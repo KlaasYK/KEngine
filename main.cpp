@@ -1,11 +1,26 @@
-#include "mainwindow.h"
-#include <QApplication>
+#include <QGuiApplication>
+
+#include "window.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    QGuiApplication app(argc, argv);
 
-    return a.exec();
+    // Set OpenGL Version information
+    // Note: This format must be set before show() is called.
+    QSurfaceFormat format;
+    format.setRenderableType(QSurfaceFormat::OpenGL);
+    format.setProfile(QSurfaceFormat::CoreProfile);
+    format.setVersion(3,3);
+
+    // Set the window up
+    Window window;
+    window.setFormat(format);
+    window.resize(QSize(800, 600));
+    // Center the window on the screen
+    window.setGeometry(1920/2-400,1080/2-300,800,600);
+    window.show();
+
+    return app.exec();
 }
+
