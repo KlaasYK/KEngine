@@ -7,8 +7,13 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    window.cpp
+    window.cpp \
+    engine.cpp
 
 HEADERS += \
-    window.h
+    window.h \
+    engine.h
+
+RESOURCES += \
+    resources.qrc
 

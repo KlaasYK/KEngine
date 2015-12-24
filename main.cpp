@@ -1,6 +1,13 @@
 #include <QGuiApplication>
+#include <QScreen>
+#include <QRect>
+
+#include <QDebug>
 
 #include "window.h"
+
+#define WIDTH 800
+#define HEIGHT 600
 
 int main(int argc, char *argv[])
 {
@@ -16,9 +23,10 @@ int main(int argc, char *argv[])
     // Set the window up
     Window window;
     window.setFormat(format);
-    window.resize(QSize(800, 600));
     // Center the window on the screen
-    window.setGeometry(1920/2-400,1080/2-300,800,600);
+    QScreen *screen = app.primaryScreen();
+    QRect size(screen->geometry());
+    window.setGeometry(size.width()/2-(WIDTH/2),size.height()/2-(HEIGHT/2),WIDTH,HEIGHT);
     window.show();
 
     return app.exec();
